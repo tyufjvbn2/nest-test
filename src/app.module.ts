@@ -5,7 +5,7 @@ import { GraphQLModule } from '@nestjs/graphql';
 // import { DatabaseModule } from './dbconfig/db.module';
 import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
-import { join } from 'path/posix';
+// import { join } from 'path/posix';
 // import { AppController } from './cat/cat.controller';
 // import { AppService } from './cat/cat.service';
 
@@ -13,17 +13,15 @@ import { join } from 'path/posix';
   imports: [
     ConfigModule.forRoot(),
     GraphQLModule.forRootAsync({
-      useFactory: () => ({
-        autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
-        sortSchema: true,
-        // typeDefs: ['./**/*.graphql'],
-        // definitions: {
-        //   path: join(process.cwd(), 'src/graphql.ts'),
-        //   outputAs: 'class',
-        //   watch: true,
-        // },
-        include: [DogModule],
-      }),
+      useFactory: () => {
+        return {
+          autoSchemaFile: './src/schemas/',
+          playground: true,
+          debug: true,
+          include: [DogModule],
+          // // typeDefs: ['./**/*.graphql'],
+        };
+      },
     }),
     MongooseModule.forRootAsync({
       useFactory: () => ({
@@ -31,6 +29,7 @@ import { join } from 'path/posix';
       }),
     }),
     CatModule,
+    // DogModule,
   ],
   // DatabaseModule,
   // MongooseModule.forRoot(

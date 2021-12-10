@@ -1,13 +1,13 @@
 import { Field, Int, ObjectType } from '@nestjs/graphql';
 
 @ObjectType()
-export class Child {
+export class Post {
   @Field((type) => Int)
   id: number;
 
   @Field()
-  name: string;
+  title: string;
 
   @Field((type) => Int, { nullable: true })
-  age?: number;
+  votes?: number;
 }
