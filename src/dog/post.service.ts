@@ -12,7 +12,7 @@ export class PostsService {
     private readonly postModel: Model<PostDocument>,
   ) {}
 
-  async findAll({ authorId: id }): Promise<Post[]> {
+  async getPosts({ authorId: id }): Promise<Post[]> {
     const postList = await this.postModel.find({ id: id });
     return postList;
   }

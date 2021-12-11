@@ -24,8 +24,13 @@ export class AuthorsService {
 
 // @Injectable()
 // export class PostsService {
-//   async findAll({ authorId: id }): Promise<Post[]> {
-//     const postList = await this.postModel.
-//     return [] as Post[];
+//   constructor(
+//     @InjectModel(Post.name)
+//     private readonly postModel: Model<PostDocument>,
+//   ) {}
+
+//   async getPosts({ authorId: id }): Promise<Post[]> {
+//     const postList = await this.postModel.find({ id: id });
+//     return postList;
 //   }
 // }
