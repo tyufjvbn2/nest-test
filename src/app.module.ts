@@ -12,24 +12,25 @@ import { MongooseModule } from '@nestjs/mongoose';
 @Module({
   imports: [
     ConfigModule.forRoot(),
-    GraphQLModule.forRootAsync({
-      useFactory: () => {
-        return {
-          autoSchemaFile: './src/schemas/',
-          playground: true,
-          debug: true,
-          include: [DogModule],
-          // // typeDefs: ['./**/*.graphql'],
-        };
-      },
-    }),
     MongooseModule.forRootAsync({
       useFactory: () => ({
         uri: `mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_PASSWORD}@cluster0.me6z7.mongodb.net/${process.env.MONGODB_DBNAME}?retryWrites=true&w=majority`,
       }),
     }),
-    CatModule,
-    // DogModule,
+    GraphQLModule.forRootAsync({
+      useFactory: () => {
+        return {
+          autoSchemaFile: './graphql-schema.gql',
+          // introspection: true,
+          // installSubscriptionHandlers: true,
+          playground: true,
+          // debug: true,
+          // include: [DogModule],
+        };
+      },
+    }),
+    // CatModule,
+    DogModule,
   ],
   // DatabaseModule,
   // MongooseModule.forRoot(

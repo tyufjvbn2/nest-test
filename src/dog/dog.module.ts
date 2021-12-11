@@ -1,10 +1,18 @@
 import { Module } from '@nestjs/common';
-// import { DogService } from './dog.service';
-// import { DogResolver } from './dog.resolver';
+import { MongooseModule } from '@nestjs/mongoose';
 
 @Module({
-  imports: [],
-  // providers: [DogService, DogResolver],
+  imports: [
+    MongooseModule.forFeature([
+      // { name: Author.name, schema: AuthorSchema },
+      // { name: Post.name, schema: PostSchema },
+    ]),
+  ],
+  providers: [
+    // AuthorsService,
+    // PostsService,
+    // AuthorsResolver,
+  ],
   //   exports: [CatService],
 })
 export class DogModule {}
