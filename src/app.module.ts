@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { CatModule } from './cat/cat.module';
+// import { CatModule } from './cat/cat.module';
 import { DogModule } from './dog/dog.module';
 import { GraphQLModule } from '@nestjs/graphql';
 // import { DatabaseModule } from './dbconfig/db.module';
@@ -20,6 +20,7 @@ import { MongooseModule } from '@nestjs/mongoose';
     GraphQLModule.forRootAsync({
       useFactory: () => {
         return {
+          path: '/',
           autoSchemaFile: './graphql-schema.gql',
           // introspection: true,
           // installSubscriptionHandlers: true,

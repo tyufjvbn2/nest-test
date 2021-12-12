@@ -18,10 +18,10 @@ export class Dog {
   description?: string;
 
   @Prop()
-  created_at: string;
+  created_at: Date;
 
   @Prop()
-  updated_at: string;
+  updated_at: Date;
 }
 
 export const DogSchema = SchemaFactory.createForClass(Dog);

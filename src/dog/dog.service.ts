@@ -1,13 +1,21 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+import { Dog, DogDocument } from './schemas/dog.schema'
 // import { GetAuthorArgs } from './dto/get-author.args';
 // import { Author, AuthorDocument } from './schemas/author.schema';
 // import { Post, PostDocument } from './schemas/post.schema';
 
 @Injectable()
 export class DogService {
-  constructor();
+  constructor(
+    @InjectModel(Dog.name)
+    private readonly dogModel: Model<DogDocument>
+  ) {}
+
+  async findOneById(id: number): Promise<Dog | null> {
+    return await this.dogModel.findOne({id:id})
+  }
 }
 
 // @Injectable()
